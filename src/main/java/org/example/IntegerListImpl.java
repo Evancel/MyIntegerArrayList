@@ -103,7 +103,7 @@ public class IntegerListImpl implements IntegerList {
         validateItem(item);
         int index = -1;
         for (int i = 0; i < size; i++) {
-            if (store[i] == item) {
+            if (store[i].equals(item)) {
                 index = i;
                 break;
             }
@@ -118,7 +118,7 @@ public class IntegerListImpl implements IntegerList {
 
         int index = -1;
         for (int i = size - 1; i >= 0; i--) {
-            if (store[i] == item) {
+            if (store[i].equals(item)) {
                 index = i;
                 break;
             }
@@ -135,7 +135,7 @@ public class IntegerListImpl implements IntegerList {
 
     @Override
     public boolean equals(IntegerList otherList) {
-        return store.equals(otherList.toArray());
+        return Arrays.equals(store, otherList.toArray());
     }
 
     @Override

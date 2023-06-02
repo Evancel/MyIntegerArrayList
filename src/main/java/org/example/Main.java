@@ -8,14 +8,14 @@ public class Main {
         IntegerList intList3 = new IntegerListImpl(100000,"R");
 /*
         long start = System.currentTimeMillis();
-        intList1.sortSelection();
-        System.out.println("SelectionTime: "+ (System.currentTimeMillis() - start));
+        intList1.sortInsertion();
+        System.out.println("InsertionTime: "+ (System.currentTimeMillis() - start));
 
-        intList2.sortSelection();
-        System.out.println("SelectionTime: "+ (System.currentTimeMillis() - start));
+        intList2.sortInsertion();
+        System.out.println("InsertionTime: "+ (System.currentTimeMillis() - start));
 
-        intList3.sortSelection();
-        System.out.println("SelectionTime: "+ (System.currentTimeMillis() - start));
+        intList3.sortInsertion();
+        System.out.println("InsertionTime: "+ (System.currentTimeMillis() - start));
 */
 
     }
