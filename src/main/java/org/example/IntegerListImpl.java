@@ -6,7 +6,7 @@ import java.util.Random;
 public class IntegerListImpl implements IntegerList {
 
     private final int DEFAULT_SIZE = 10;
-    private final int MULTIPLIKATOR = 2;
+    private final double MULTIPLICATOR = 1.5;
     private Integer[] store;
     private int size = 0;
 
@@ -41,23 +41,17 @@ public class IntegerListImpl implements IntegerList {
     public Integer add(int index, Integer item) {
         validateItem(item);
         validateSize();
+        validateIndex(index);
 
-        if(index<0){
-            throw new IndexOutOfBoundsException();
-        }else if (size == 0) {
+        if (size == 0) {
             store[index] = item;
-            size++;
         } else if (store[index] != null) {
             System.arraycopy(store, index, store, index + 1, size - (index));
             store[index] = item;
-            size++;
-        } else if (store[index-1] == null) {
-            add(index - 1, item);
         } else {
             store[index] = item;
-            size++;
         }
-
+        size++;
         return item;
     }
 
@@ -93,7 +87,8 @@ public class IntegerListImpl implements IntegerList {
     @Override
     public boolean contains(Integer item) {
         validateItem(item);
-        sortSelection();
+    //    sortSelection();
+        quickSort();
 
         return binarySearch(item);
     }
@@ -180,9 +175,7 @@ public class IntegerListImpl implements IntegerList {
 
     private void validateSize() {
         if (size == store.length) {
-            Integer[] extendedArray;
-            extendedArray = Arrays.copyOf(store, size * MULTIPLIKATOR);
-            store = extendedArray;
+            store = Arrays.copyOf(store,(int) (size * MULTIPLICATOR));
         }
     }
 
@@ -217,6 +210,19 @@ public class IntegerListImpl implements IntegerList {
                 }
             }
         }
+    }
+
+    private void quickSort(){
+        int[] arrForQuickSort = toIntArray();
+        QuickSort.quickSort(arrForQuickSort, store[0], store[size-1]);
+    }
+
+    private int[] toIntArray(){
+        int[] arr2 = new int[size];
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = store[i];
+        }
+        return Arrays.copyOf(arr2, arr2.length);
     }
 
     private static void swapElements(Integer[] arr, int indexA, int indexB) {
